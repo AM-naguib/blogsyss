@@ -52,6 +52,11 @@ $result = mysqli_query($conn, $sql);
 if (!$result) {
     echo "erorr in create table categories" . mysqli_error($conn);
 }
+$sql = "INSERT INTO `categories` (`id`, `name`) VALUES (NULL, 'unnamed');";
+$result = mysqli_query($conn, $sql);
+if (!$result) {
+    echo "erorr in create table categories" . mysqli_error($conn);
+}
 // create posts table
 $sql = "CREATE TABLE if not exists posts (
         id int AUTO_INCREMENT PRIMARY KEY ,

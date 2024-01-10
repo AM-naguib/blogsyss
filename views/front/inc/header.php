@@ -1,6 +1,11 @@
 
-<?php require_once "../../../app/config.php";
-
+<?php 
+require_once "../../../app/config.php";
+$data = [
+    "tables" => ["settings"],
+    "columns" => ["*"]
+];
+$settings = @selectData($data)[0];
    ?> 
     
 <!DOCTYPE html>
@@ -10,7 +15,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Clean Blog - Start Bootstrap Theme</title>
+        <title><?= $settings["site_title"] ?></title>
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>

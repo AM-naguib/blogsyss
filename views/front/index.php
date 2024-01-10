@@ -5,7 +5,11 @@ $posts = selectData([
 "columns" => ["posts.id as pid","p_title","p_content","p_date","u_name","name","p_category_id"]],
 "where users.id = posts.p_user_id 
 AND posts.p_category_id =categories.id AND p_approve = 1");
-
+$data = [
+    "tables" => ["settings"],
+    "columns" => ["*"]
+];
+$settings = @selectData($data)[0];
 ?>
 
 <!-- Page Header-->
@@ -14,8 +18,8 @@ AND posts.p_category_id =categories.id AND p_approve = 1");
         <div class="row gx-4 gx-lg-5 justify-content-center">
             <div class="col-md-10 col-lg-8 col-xl-7">
                 <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
+                    <h1><?= $settings["site_title"] ?></h1>
+                    <span class="subheading"><?= $settings["site_description"] ?></span>
                 </div>
             </div>
         </div>
@@ -25,6 +29,7 @@ AND posts.p_category_id =categories.id AND p_approve = 1");
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
+            <?php if($posts): ?>
             <?php foreach($posts as $post): ?>
             <!-- Post preview-->
             <div class="post-preview">
@@ -43,6 +48,8 @@ AND posts.p_category_id =categories.id AND p_approve = 1");
             <!-- Divider-->
             <hr class="my-4" />
             <?php endforeach ?>
+            <?php endif ?>
+
             <!-- Pager-->
             <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts
                     →</a></div>
