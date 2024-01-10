@@ -10,6 +10,8 @@ if($_SERVER['REQUEST_METHOD'] == 'GET') {
         $erorrs [] = "User not found";
     }
     if(empty($erorrs)){
+        $sql = "delete from posts where p_user_id =  $u_id";
+        $result = mysqli_query($conn,$sql);
         if(deleteItem('users',$u_id)){
             $_SESSION['success'] = ["User deleted successfully"];
         }else{
