@@ -69,7 +69,7 @@ $sql = "CREATE TABLE if not exists posts (
         p_user_id int,
         p_approve int DEFAULT 0,
         FOREIGN KEY (p_category_id) REFERENCES categories(id) ON DELETE CASCADE,
-        FOREIGN KEY (p_user_id) REFERENCES users(id) ON DELETE CASCADE
+        FOREIGN KEY (p_user_id) REFERENCES users(id) 
     )";
 $result = mysqli_query($conn, $sql);
 if (!$result) {

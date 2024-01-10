@@ -37,7 +37,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         if(dbInsert("posts", $data)){
             $_SESSION["success"] = ["post created successfully"];
         }else{
-            $_SESSION["erorrs"] = ["something went wrong"];
+            $_SESSION["erorrs"] = ["something went wrong" . mysqli_error($conn) ];
         }
     }else{
         $_SESSION["erorrs"] = $erorrs;

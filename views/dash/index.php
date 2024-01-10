@@ -6,7 +6,7 @@ $posts = selectData(["tables" => ["posts"], "columns" => ["count(*)"]], "where p
 $posts_requests = selectData(["tables" => ["posts"], "columns" => ["count(*)"]], "where p_approve=0")[0];
 $comments = selectData(["tables" => ["comments"], "columns" => ["count(*)"]])[0];
 $users = selectData(["tables" => ["users"], "columns" => ["count(*)"]])[0];
-
+admin_view();
 $dataArray = [
     "categories" => [
         "data" => selectData(["tables" => ["categories"], "columns" => ["count(*)"]])[0],

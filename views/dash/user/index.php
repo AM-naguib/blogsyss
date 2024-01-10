@@ -43,8 +43,10 @@ $users = selectData($data,"");
                             <a href="<?= URL."src/users/delete.php?u_id=".$user["id"]?>" class="btn btn-danger"><i class="fa-solid fa-trash"></i></a>
                             <a href="<?= URL."views/dash/user/edit.php?u_id=".$user["id"]?>" class="btn btn-primary"><i class="fa-solid fa-pen"></i></a>
                             <!-- not work -->
+                            <?php /* 
                             <a href="<?= URL."src/users/status.php?u_id=".$user["id"]?>" class="btn btn-warning"><i class="fa-solid fa-hand"></i></a>
                             <a href="<?= URL."src/users/status.php?u_id=".$user["id"]?>" class="btn btn-success"><i class="fa-solid fa-check"></i></a>
+                            */ ?>
                         </td>
                     </tr>
                     <?php endforeach ?>
