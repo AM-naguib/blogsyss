@@ -1,6 +1,6 @@
 <?php
 
-// connection to sql
+// connection with database
 $conn = mysqli_connect("localhost", "root", "");
 if (mysqli_connect_errno()) {
     echo "Failed to connect to MySQL: " . mysqli_connect_error();
@@ -37,6 +37,11 @@ $result = mysqli_query($conn, $sql);
 if (!$result) {
     echo "erorr in create table" . mysqli_error($conn);
 }
+$sql = "INSERT INTO users(u_name,u_username,u_password,u_role) VALUES('Admin','admin','admin',1)";
+$result = mysqli_query($conn, $sql);
+if (!$result) {
+    echo "erorr in create table" . mysqli_error($conn);
+}
 // create categories table
 
 $sql = "CREATE table if not exists categories(
@@ -58,8 +63,8 @@ $sql = "CREATE TABLE if not exists posts (
         p_category_id int,
         p_user_id int,
         p_approve int DEFAULT 0,
-        FOREIGN KEY (p_category_id) REFERENCES categories(id),
-        FOREIGN KEY (p_user_id) REFERENCES users(id)
+        FOREIGN KEY (p_category_id) REFERENCES categories(id) ON DELETE CASCADE,
+        FOREIGN KEY (p_user_id) REFERENCES users(id) ON DELETE CASCADE
     )";
 $result = mysqli_query($conn, $sql);
 if (!$result) {
@@ -73,7 +78,7 @@ $sql = "CREATE table if not exists comments(
     c_post_id int,
     c_approve int DEFAULT 0,
     c_date varchar(50),
-    FOREIGN KEY (c_post_id) REFERENCES posts(id)
+    FOREIGN KEY (c_post_id) REFERENCES posts(id) ON DELETE CASCADE
     
     
 );";
@@ -101,12 +106,17 @@ $result = mysqli_query($conn, $sql);
 if (!$result) {
     echo "erorr in create table settings " . mysqli_error($conn);
 }
+$sql = "INSERT INTO settings(site_title) VALUES('Blog Name')";
+$result = mysqli_query($conn, $sql);
+if (!$result) {
+    echo "erorr in create table settings " . mysqli_error($conn);
+}
 // create post_views table
 $sql = "CREATE TABLE if not exists post_views(
         id int AUTO_INCREMENT PRIMARY KEY,
         pv_number int DEFAULT 1000,
         pv_post_id int,
-        FOREIGN KEY (pv_post_id) REFERENCES posts(id)
+        FOREIGN KEY (pv_post_id) REFERENCES posts(id) ON DELETE CASCADE
         
     )";
 $result = mysqli_query($conn, $sql);

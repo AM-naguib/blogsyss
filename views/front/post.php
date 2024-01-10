@@ -12,10 +12,13 @@ $post = selectData(
 "where users.id = posts.p_user_id 
 AND posts.p_category_id =categories.id 
 AND posts.id = $p_id 
+AND p_approve = 1
 ")[0];
 $comments = selectData(["tables" => ["posts", "comments"], "columns" => ["c_name", "c_content", "c_date"]], " where posts.id = comments.c_post_id AND posts.id = $p_id ");
 views_counter($p_id);
-
+if(empty($post)){
+    header("Location: " . URL . "views/front/");
+}
 ?>
 <!-- Page Header-->
 <header class="masthead" style="background-image: url('<?= URL ?>public/assets/img/post-bg.jpg')">

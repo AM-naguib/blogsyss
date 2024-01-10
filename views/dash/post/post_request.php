@@ -15,7 +15,11 @@ $posts = selectData(
 <div class="container">
     <div class="row">
         <h1 class="text-center display-1 border-bottom">Posts Requests</h1>
-        <div class="col-8 mx-auto">
+        <div class="col-9 mx-auto">
+        <?php
+            alert_display("success", "success");
+            alert_display("erorrs", "danger");
+            ?>
             <table class="table table-hover table-bordered table-striped">
                 <thead>
                     <tr>
@@ -28,6 +32,7 @@ $posts = selectData(
                     </tr>
                 </thead>
                 <tbody>
+                    <?php if($posts): ?>
                     <?php foreach ($posts as $post) : ?>
                     <tr>
                         <td><?= $post['pid'] ?></td>
@@ -36,10 +41,16 @@ $posts = selectData(
                         <td><?= $post['p_content'] ?></td>
                         <td><?= $post['p_date'] ?></td>
                         <td>
-                            <a href=""></a>
+                            <a href="<?=  URL ?>src/posts/approve.php?p_id=<?= $post['pid'] ?>"><i class="fa-solid fa-check btn btn-success"></i></a>
+                            <a href="<?=  URL ?>src/posts/delete.php?p_id=<?= $post['pid'] ?>"><i class="fa-solid fa-trash btn btn-danger"></i></a>
                         </td>
                     </tr>
                     <?php endforeach ?>
+                    <?php else: ?>
+                    <tr>
+                        <td colspan="6" class="text-center">No posts found</td>
+                    </tr>
+                    <?php endif ?>
                 </tbody>
             </table>
         </div>

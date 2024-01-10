@@ -9,7 +9,7 @@ $data = [
 if ($_SESSION["user"]["u_role"] == 2) {
     $posts = selectData($data, "where posts.p_category_id = categories.id AND p_user_id = " . $_SESSION["user"]["id"]);
 } elseif ($_SESSION["user"]["u_role"] == 1) {
-    $posts = selectData($data, "where posts.p_category_id = categories.id");
+    $posts = selectData($data, "where posts.p_category_id = categories.id AND p_approve = 1");
 }
 
 

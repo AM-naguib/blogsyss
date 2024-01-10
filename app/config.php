@@ -6,6 +6,5 @@ require_once MAIN_PATH . "app/db.php";
 require_once MAIN_PATH . "app/sanitaiz.php";
 require_once MAIN_PATH . "app/validation.php";
 require_once MAIN_PATH . "app/helper.php";
-echo "hi config";
 
 

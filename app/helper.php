@@ -9,14 +9,6 @@ function alert_display($key, $class)
     }
 }
 
-function role_check()
-{
-    if (!$_SESSION["user"]["u_role"] == 2 && !$_SESSION["user"]["u_role"] == 1) {
-        header("location:" . URL . "views/dash/login.php");
-        exit();
-    }
-}
-
 
 function checkUserRole()
 {
@@ -24,13 +16,14 @@ function checkUserRole()
     $allowedRoles = [1, 2];
 
     if (!in_array($userRole, $allowedRoles)) {
+        session_destroy();
         header("location:" . URL . "views/dash/login.php");
         exit();
     }
 }
 function admin_view()
 {
-    if (!$_SESSION["user"]["u_role"] == 1) {
+    if ($_SESSION["user"]["u_role"] != 1) {
         header("location:" . URL . "views/dash/login.php");
         die();
     }

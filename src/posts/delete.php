@@ -19,6 +19,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     if (empty($erorrs)) {
         $sql = "DELETE FROM comments WHERE c_post_id = '$p_id'";
         $result = mysqli_query($conn, $sql);
+        $sql = "DELETE FROM post_views WHERE pv_post_id = '$p_id'";
+        $result = mysqli_query($conn, $sql);
         if ($result && deleteItem('posts', $p_id)) {
             $_SESSION['success'] = ["post deleted successfully"];
         } else {
@@ -27,7 +29,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     } else {
         $_SESSION['erorrs'] = $erorrs;
     }
-    header("location:" . URL . "views/dash/post/");
+    
+    header("location:" . $_SERVER['HTTP_REFERER']);
 }
 
 ?>

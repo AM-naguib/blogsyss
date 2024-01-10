@@ -1,7 +1,7 @@
 <?php require_once "../../app/config.php";
 require_once URL . "views/front/inc/header.php";
 $cat_id = $_GET["cid"];
-$posts = selectData(["tables" => ["users", "posts", "categories"], "columns" => ["posts.id as pid", "p_title", "p_content", "p_date", "u_name", "name","p_category_id"]], " where users.id = posts.p_user_id and posts.p_category_id =categories.id and categories.id = $cat_id ");
+$posts = selectData(["tables" => ["users", "posts", "categories"], "columns" => ["posts.id as pid", "p_title", "p_content", "p_date", "u_name", "name","p_category_id"]], " where users.id = posts.p_user_id and posts.p_category_id =categories.id and categories.id = $cat_id AND p_approve = 1");
 
 ?>
 <header class="masthead" style="background-image: url('<?= URL ?>public/assets/img/home-bg.jpg')">

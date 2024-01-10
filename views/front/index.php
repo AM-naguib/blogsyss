@@ -4,7 +4,7 @@ $posts = selectData([
 "tables" => ["users", "posts","categories"], 
 "columns" => ["posts.id as pid","p_title","p_content","p_date","u_name","name","p_category_id"]],
 "where users.id = posts.p_user_id 
-AND posts.p_category_id =categories.id ");
+AND posts.p_category_id =categories.id AND p_approve = 1");
 
 ?>
 

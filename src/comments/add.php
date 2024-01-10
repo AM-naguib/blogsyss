@@ -1,6 +1,5 @@
 <?php
 require_once "../../app/config.php";
-admin_view();
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $c_name = sanitaiz($_POST["c_name"]);
     $c_content = sanitaiz($_POST["c_content"]);
@@ -42,5 +41,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION["error"] = $erorrs;
     }
 
-    header("location:" .URL . "views/front/post.php?pid=" . $pid);
+    header("location:" . $_SERVER['HTTP_REFERER']);
+
 }
