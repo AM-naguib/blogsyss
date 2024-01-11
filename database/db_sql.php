@@ -101,7 +101,7 @@ $sql = "CREATE TABLE if not exists settings(
         email varchar(100),
         fav_icon varchar(255),
         facebook varchar(255),
-        youtube varchar(255),
+        twitter varchar(255),
         github varchar(255),
         about_title varchar(255) NOT NULL,
         about_content text NOT NULL
